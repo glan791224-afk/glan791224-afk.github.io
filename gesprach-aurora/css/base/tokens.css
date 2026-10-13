@@ -1,0 +1,43 @@
+/* Design tokens — the only place raw brand values should live */
+:root{
+  /* surface */
+  --bg:#04060b;
+  --text:#eaf2ff;
+  --muted:rgba(222,234,255,.62);
+  --dim:rgba(222,234,255,.38);
+  --line:rgba(170,200,255,.10);
+  --line-2:rgba(170,200,255,.18);
+
+  /* brand (from the original Gespräch palette) */
+  --blue:#3fa2fd;
+  --blue-2:#1e7ef2;
+  --cyan:#8fd5ff;
+  --violet:#7a6bff;
+
+  /* supporting tones — avatars, senders, status */
+  --tone-blue:#3fa2fd;
+  --tone-violet:#7a6bff;
+  --tone-green:#2bb38a;
+  --tone-pink:#e86a8a;
+  --tone-mint:#7ff0c4;
+  --tone-rose:#ff9fb6;
+  --tone-lilac:#c3bbff;
+  --online:#6fd28f;
+  --rec:#ff4d5e;
+
+  /* layout — the nav pill and the content column share one width so their edges line up */
+  --container:1200px;
+  --page-pad:clamp(16px,4vw,40px);
+
+  /* type */
+  --font:"Geist","Inter",system-ui,"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  --zh:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  --mono:"Geist Mono",ui-monospace,Menlo,monospace;
+  --ui:"Geist","Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;   /* nav & buttons: CJK falls straight to Noto, not system-ui */
+
+  /* shape & motion */
+  --r:22px;
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  --ease-spring:cubic-bezier(.2,1.4,.4,1);
+  --ease-roll:cubic-bezier(.6,0,.2,1);
+}

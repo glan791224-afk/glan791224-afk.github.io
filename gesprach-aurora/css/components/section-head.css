@@ -1,0 +1,8 @@
+/* Centered section heading: eyebrow + title + intro */
+.head{text-align:center;max-width:760px;margin:0 auto clamp(40px,5vw,64px)}
+.head h2{margin-top:16px;font-family:var(--zh);font-weight:500;font-size:clamp(34px,4.6vw,60px);line-height:1.15;letter-spacing:-.02em}
+.head p{margin-top:16px;color:var(--muted);font-family:var(--zh);font-weight:300;font-size:clamp(15px,1.3vw,17px);text-wrap:balance}
+
+.eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--cyan)}
+.eyebrow::before,
+.eyebrow::after{content:"";width:18px;height:1px;background:currentColor}

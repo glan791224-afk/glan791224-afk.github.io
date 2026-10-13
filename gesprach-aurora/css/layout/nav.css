@@ -1,0 +1,119 @@
+/* Floating glass navigation + mobile drop-down
+
+   Micro-interactions (custom properties are set by js/main.js):
+   · sliding pill   --pill-x / --pill-w / --pill-o — glides to the hovered link, rests on the current section
+   · text roll      label rolls up and a brighter copy rolls in from below
+   · scroll-spy     .is-current link gets a glowing dot
+   · edge light     --nx / --ny — the pill's border lights up under the cursor
+   · logo / CTA     glow lift on the logo; light sweep, arrow swap and magnetic pull on the button */
+
+.nav{
+  position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:60;
+  width:min(var(--container),calc(100% - var(--page-pad) * 2));
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:10px 10px 10px 24px;border-radius:999px;
+  background:rgba(8,12,22,.72);border:1px solid var(--line-2);
+  backdrop-filter:blur(20px) saturate(1.5);-webkit-backdrop-filter:blur(20px) saturate(1.5);
+  box-shadow:0 12px 40px -12px rgba(0,0,0,.75),inset 0 1px 0 rgba(255,255,255,.07);
+  font-family:var(--ui);
+}
+
+/* border light that follows the cursor */
+.nav::after{
+  content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;pointer-events:none;
+  opacity:0;transition:opacity .4s;
+  background:radial-gradient(180px circle at var(--nx,50%) var(--ny,50%),rgba(143,213,255,.9),transparent 70%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;
+}
+.nav:hover::after{opacity:1}
+
+/* ── logo ── */
+.nav .logo{display:flex;align-items:center;border-radius:8px}
+.nav .logo img{height:26px;width:auto;transition:transform .5s var(--ease-spring),filter .4s}
+.nav .logo:hover img{transform:translateY(-1px) scale(1.04);filter:brightness(1.2) drop-shadow(0 0 12px rgba(63,162,253,.6))}
+
+/* ── links ── */
+.nav-links{position:relative;display:flex;gap:2px;list-style:none}
+
+/* sliding pill */
+.nav-links::before{
+  content:"";position:absolute;top:0;left:0;height:100%;
+  width:var(--pill-w,0px);transform:translateX(var(--pill-x,0px));opacity:var(--pill-o,0);
+  border-radius:999px;
+  background:linear-gradient(180deg,rgba(255,255,255,.11),rgba(255,255,255,.04));
+  box-shadow:inset 0 0 0 1px rgba(143,213,255,.22),0 8px 24px -10px rgba(63,162,253,.75);
+  transition:transform .5s var(--ease-spring),width .5s var(--ease-spring),opacity .3s;
+}
+
+.nav-links a{
+  position:relative;z-index:1;display:block;padding:9px 20px;border-radius:999px;
+  font:500 15px/1.5 var(--ui);letter-spacing:.04em;color:rgba(236,243,255,.88);
+  transition:color .3s;
+}
+.nav-links a:hover,
+.nav-links a:focus-visible,
+.nav-links a.is-current{color:#fff}
+.nav-links a:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+
+/* text roll: the copy is a text-shadow one line below; hovering slides it into view */
+.roll{display:block;height:1.5em;overflow:hidden}
+.roll > span{display:block;text-shadow:0 1.5em 0 #fff;transition:transform .5s var(--ease-roll)}
+.nav-links a:hover .roll > span,
+.nav-links a:focus-visible .roll > span{transform:translateY(-1.5em)}
+
+/* scroll-spy dot */
+.nav-links a::after{
+  content:"";position:absolute;left:50%;bottom:1px;width:4px;height:4px;border-radius:50%;
+  background:var(--cyan);box-shadow:0 0 8px var(--cyan);
+  transform:translateX(-50%) scale(0);transition:transform .45s var(--ease-spring);
+}
+.nav-links a.is-current::after{transform:translateX(-50%) scale(1)}
+
+/* ── CTA ── */
+.nav .btn-glow{padding:11px 20px}
+
+/* ── hamburger → X ── */
+.nav .menu-btn{
+  display:none;position:relative;width:42px;height:42px;border-radius:50%;cursor:pointer;
+  border:1px solid var(--line-2);background:rgba(255,255,255,.04);
+  transition:background .3s,border-color .3s;
+}
+.nav .menu-btn:hover{background:rgba(255,255,255,.08);border-color:rgba(143,213,255,.45)}
+.menu-btn span{position:absolute;left:13px;right:13px;height:1.5px;border-radius:2px;background:var(--text);transition:transform .45s var(--ease-spring),opacity .2s}
+.menu-btn span:nth-child(1){top:15px}
+.menu-btn span:nth-child(2){top:20px}
+.menu-btn span:nth-child(3){top:25px}
+.menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(5px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0;transform:scaleX(.2)}
+.menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-5px) rotate(-45deg)}
+
+/* ── mobile sheet ── */
+.mnav{
+  position:fixed;top:78px;left:var(--page-pad);right:var(--page-pad);z-index:59;
+  display:flex;flex-direction:column;padding:10px;border-radius:24px;
+  background:rgba(8,12,22,.9);border:1px solid var(--line-2);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  opacity:0;transform:translateY(-10px) scale(.98);pointer-events:none;transition:.3s;
+  font-family:var(--ui);
+}
+.mnav.is-open{opacity:1;transform:none;pointer-events:auto}
+.mnav a{
+  --i:0;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:15px 16px;border-radius:14px;font:500 17px var(--ui);letter-spacing:.03em;color:#eef4ff;
+  opacity:0;transform:translateY(-8px);
+  transition:opacity .35s calc(var(--i) * 45ms),transform .5s var(--ease-spring) calc(var(--i) * 45ms),background .25s;
+}
+.mnav a:nth-child(2){--i:1}
+.mnav a:nth-child(3){--i:2}
+.mnav a:nth-child(4){--i:3}
+.mnav.is-open a{opacity:1;transform:none}
+.mnav a::after{content:"→";color:var(--cyan);opacity:.45;transform:translateX(-6px);transition:transform .35s var(--ease-spring),opacity .3s}
+.mnav a:hover{background:rgba(255,255,255,.06)}
+.mnav a:hover::after{opacity:1;transform:none}
+
+@media (max-width:760px){
+  .nav{padding:8px 8px 8px 18px}
+  .nav-links,.nav .btn-glow{display:none}
+  .nav .menu-btn{display:block}
+}

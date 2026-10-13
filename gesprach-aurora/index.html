@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gespräch — 专属你的好伙伴</title>
+  <link rel="icon" href="assets/images/logo.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+
+  <link rel="stylesheet" href="css/main.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+
+  <!-- Icon sprite: paths from assets/icons/*.svg, fill inherited so CSS can recolour them.
+       Kept inline because <use href="file.svg#id"> is blocked when the page is opened from disk. -->
+  <svg class="sprite" aria-hidden="true">
+    <symbol id="i-chat" viewBox="0 0 47 47"><path d="M32.3239 22.1196C31.7104 22.1196 31.1221 21.8857 30.6883 21.4692C30.2545 21.0528 30.0108 20.4879 30.0108 19.899C30.0108 19.3101 30.2545 18.7452 30.6883 18.3288C31.1221 17.9123 31.7104 17.6784 32.3239 17.6784C32.9374 17.6784 33.5258 17.9123 33.9596 18.3288C34.3934 18.7452 34.6371 19.3101 34.6371 19.899C34.6371 20.4879 34.3934 21.0528 33.9596 21.4692C33.5258 21.8857 32.9374 22.1196 32.3239 22.1196ZM23.0713 22.1196C22.4578 22.1196 21.8695 21.8857 21.4357 21.4692C21.0019 21.0528 20.7582 20.4879 20.7582 19.899C20.7582 19.3101 21.0019 18.7452 21.4357 18.3288C21.8695 17.9123 22.4578 17.6784 23.0713 17.6784C23.6848 17.6784 24.2732 17.9123 24.707 18.3288C25.1408 18.7452 25.3845 19.3101 25.3845 19.899C25.3845 20.4879 25.1408 21.0528 24.707 21.4692C24.2732 21.8857 23.6848 22.1196 23.0713 22.1196ZM13.8187 22.1196C13.2052 22.1196 12.6169 21.8857 12.1831 21.4692C11.7493 21.0528 11.5056 20.4879 11.5056 19.899C11.5056 19.3101 11.7493 18.7452 12.1831 18.3288C12.6169 17.9123 13.2052 17.6784 13.8187 17.6784C14.4322 17.6784 15.0206 17.9123 15.4544 18.3288C15.8882 18.7452 16.1319 19.3101 16.1319 19.899C16.1319 20.4879 15.8882 21.0528 15.4544 21.4692C15.0206 21.8857 14.4322 22.1196 13.8187 22.1196ZM7.20972 7.20972V32.5883H15.1405V38.9329L24.3931 32.5883H38.9329V7.20972H7.20972Z"/></symbol>
+    <symbol id="i-video" viewBox="0 0 47 47"><path d="M32.0619 18.8138V11.6721C32.0619 11.4639 32.0207 11.2577 31.9407 11.0655C31.8607 10.8733 31.7434 10.6988 31.5956 10.5521C31.4479 10.4054 31.2726 10.2894 31.0798 10.2107C30.887 10.132 30.6806 10.0923 30.4724 10.0938H8.27507C7.85543 10.0938 7.45282 10.2597 7.15505 10.5554C6.85727 10.8511 6.6885 11.2525 6.68555 11.6721V33.8806C6.6885 34.3002 6.85727 34.7017 7.15505 34.9973C7.45282 35.293 7.85543 35.4589 8.27507 35.4589H30.4724C30.6806 35.4604 30.887 35.4207 31.0798 35.342C31.2726 35.2634 31.4479 35.1473 31.5956 35.0006C31.7434 34.8539 31.8607 34.6794 31.9407 34.4872C32.0207 34.295 32.0619 34.0888 32.0619 33.8806V27.5337L38.4088 32.2911V14.0564L32.0619 18.8138ZM16.9503 24.3659C16.1634 24.3681 15.3935 24.1366 14.7383 23.7008C14.0831 23.265 13.5721 22.6445 13.2699 21.918C12.9678 21.1914 12.8881 20.3915 13.0411 19.6196C13.1941 18.8477 13.5728 18.1386 14.1292 17.5822C14.6856 17.0258 15.3947 16.6471 16.1666 16.4941C16.9385 16.3411 17.7384 16.4208 18.4649 16.7229C19.1915 17.0251 19.812 17.5361 20.2478 18.1913C20.6836 18.8465 20.9151 19.6164 20.9129 20.4033C20.9099 21.4533 20.4915 22.4595 19.749 23.202C19.0065 23.9445 18.0003 24.3629 16.9503 24.3659Z"/></symbol>
+    <symbol id="i-voice" viewBox="-10 -6 47 47"><path d="M18.9798 5.55157C18.9798 2.48552 16.4943 0 13.4283 0C10.3622 0 7.87671 2.48552 7.87671 5.55157V15.8616C7.87671 18.9277 10.3622 21.4132 13.4283 21.4132C16.4943 21.4132 18.9798 18.9277 18.9798 15.8616V5.55157Z"/><path fill-rule="evenodd" d="M3.06417 15.0685C3.06417 14.2223 2.37824 13.5364 1.53209 13.5364C0.685939 13.5364 0 14.2223 0 15.0685C0 21.9667 5.20142 27.65 11.8962 28.4103V31.7232C11.8962 32.5694 12.5822 33.2553 13.4283 33.2553C14.2745 33.2553 14.9604 32.5694 14.9604 31.7232V28.4103C21.6552 27.65 26.8566 21.9667 26.8566 15.0685C26.8566 14.2223 26.1707 13.5364 25.3245 13.5364C24.4784 13.5364 23.7924 14.2223 23.7924 15.0685C23.7924 20.7924 19.1523 25.4326 13.4283 25.4326C7.70433 25.4326 3.06417 20.7924 3.06417 15.0685Z"/></symbol>
+    <symbol id="i-emoji" viewBox="0 0 47 47"><path d="M22.547 5.76807C19.1247 5.76807 15.7792 6.7829 12.9336 8.68424C10.0881 10.5856 7.87024 13.288 6.56057 16.4498C5.25091 19.6117 4.90824 23.0908 5.5759 26.4474C6.24356 29.804 7.89157 32.8872 10.3115 35.3071C12.7315 37.727 15.8147 39.375 19.1712 40.0427C22.5278 40.7104 26.007 40.3677 29.1688 39.058C32.3306 37.7484 35.033 35.5305 36.9344 32.685C38.8357 29.8394 39.8505 26.494 39.8505 23.0716C39.8505 18.4824 38.0275 14.0812 34.7825 10.8362C31.5374 7.59112 27.1362 5.76807 22.547 5.76807ZM13.0733 17.8806C13.0733 17.2667 13.2553 16.6666 13.5964 16.1562C13.9374 15.6457 14.4222 15.2479 14.9893 15.013C15.5565 14.7781 16.1806 14.7166 16.7826 14.8364C17.3847 14.9561 17.9378 15.2517 18.3718 15.6858C18.8059 16.1199 19.1015 16.673 19.2213 17.275C19.3411 17.8771 19.2796 18.5012 19.0447 19.0683C18.8097 19.6355 18.4119 20.1202 17.9015 20.4613C17.3911 20.8024 16.791 20.9844 16.1771 20.9844C15.7691 20.9858 15.3649 20.9065 14.9876 20.751C14.6104 20.5956 14.2677 20.367 13.9792 20.0785C13.6907 19.79 13.4621 19.4473 13.3066 19.07C13.1512 18.6928 13.0719 18.2886 13.0733 17.8806ZM22.6551 33.4321C17.2478 33.4321 14.4684 26.5107 14.4684 26.5107H30.604C30.604 26.5107 28.1166 33.4321 22.6551 33.4321ZM28.5924 20.9844C27.9785 20.9844 27.3784 20.8024 26.868 20.4613C26.3576 20.1202 25.9598 19.6355 25.7249 19.0683C25.4899 18.5012 25.4285 17.8771 25.5482 17.275C25.668 16.673 25.9636 16.1199 26.3977 15.6858C26.8318 15.2517 27.3848 14.9561 27.9869 14.8364C28.589 14.7166 29.213 14.7781 29.7802 15.013C30.3473 15.2479 30.8321 15.6457 31.1732 16.1562C31.5142 16.6666 31.6962 17.2667 31.6962 17.8806C31.6977 18.2886 31.6184 18.6928 31.4629 19.07C31.3074 19.4473 31.0788 19.79 30.7903 20.0785C30.5018 20.367 30.1591 20.5956 29.7819 20.751C29.4047 20.9065 29.0004 20.9858 28.5924 20.9844Z"/></symbol>
+    <symbol id="i-groupchat" viewBox="-6 -6 47 47"><path fill-rule="evenodd" d="M31.881 11.0158H29.2582V8.28809H34.6087V27.2771H30.6221V34.6072L22.3417 27.2771H16.8787V24.5494H23.3756L27.8944 28.5496V24.5494H31.881V11.0158Z"/><path d="M19.8631 12.199C19.3778 12.199 18.9125 12.0076 18.5694 11.6669C18.2263 11.3261 18.0336 10.864 18.0336 10.3821C18.0336 9.90028 18.2263 9.43815 18.5694 9.09742C18.9125 8.75669 19.3778 8.56527 19.8631 8.56527C20.3483 8.56527 20.8136 8.75669 21.1567 9.09742C21.4998 9.43815 21.6925 9.90028 21.6925 10.3821C21.6925 10.864 21.4998 11.3261 21.1567 11.6669C20.8136 12.0076 20.3483 12.199 19.8631 12.199ZM12.5451 12.199C12.0599 12.199 11.5945 12.0076 11.2514 11.6669C10.9083 11.3261 10.7156 10.864 10.7156 10.3821C10.7156 9.90028 10.9083 9.43815 11.2514 9.09742C11.5945 8.75669 12.0599 8.56527 12.5451 8.56527C13.0303 8.56527 13.4956 8.75669 13.8387 9.09742C14.1818 9.43815 14.3746 9.90028 14.3746 10.3821C14.3746 10.864 14.1818 11.3261 13.8387 11.6669C13.4956 12.0076 13.0303 12.199 12.5451 12.199ZM5.22712 12.199C4.74191 12.199 4.27657 12.0076 3.93347 11.6669C3.59038 11.3261 3.39763 10.864 3.39763 10.3821C3.39763 9.90028 3.59038 9.43815 3.93347 9.09742C4.27657 8.75669 4.74191 8.56527 5.22712 8.56527C5.71233 8.56527 6.17767 8.75669 6.52077 9.09742C6.86386 9.43815 7.05661 9.90028 7.05661 10.3821C7.05661 10.864 6.86386 11.3261 6.52077 11.6669C6.17767 12.0076 5.71233 12.199 5.22712 12.199ZM0 0V20.7643H6.27254V25.9554L13.5905 20.7643H25.0902V0H0Z"/></symbol>
+    <symbol id="i-group" viewBox="-5.5 -7 47 47"><path d="M17.9863 14.1718C19.3877 14.1718 20.7577 13.7562 21.923 12.9776C23.0883 12.199 23.9965 11.0923 24.5328 9.79754C25.0691 8.50277 25.2094 7.07803 24.936 5.7035C24.6626 4.32898 23.9877 3.06639 22.9968 2.07541C22.0058 1.08443 20.7432 0.409567 19.3687 0.136157C17.9941 -0.137254 16.5694 0.00307022 15.2746 0.539384C13.9799 1.0757 12.8732 1.98392 12.0946 3.14918C11.316 4.31445 10.9004 5.68444 10.9004 7.08589C10.9004 8.96519 11.6469 10.7675 12.9758 12.0964C14.3047 13.4252 16.107 14.1718 17.9863 14.1718Z"/><path d="M8.27865 13.333C8.56521 13.3503 8.84901 13.2686 9.08248 13.1015C9.31596 12.9344 9.48491 12.6922 9.56103 12.4154C9.63716 12.1386 9.61582 11.844 9.50061 11.5811C9.38539 11.3181 9.18329 11.1027 8.92819 10.9711C8.24886 10.5693 7.68582 9.99754 7.29446 9.31214C6.9031 8.62675 6.6969 7.85128 6.69613 7.06202C6.69414 6.3178 6.87251 5.58419 7.21599 4.92397C7.55947 4.26375 8.05781 3.6966 8.66837 3.27107C8.91979 3.0726 9.08557 2.78532 9.13159 2.46833C9.17761 2.15135 9.10038 1.82878 8.91578 1.56701C8.73118 1.30525 8.45327 1.1242 8.13923 1.06113C7.82519 0.998063 7.49892 1.05777 7.22757 1.22797C6.24868 1.90227 5.45514 2.812 4.92002 3.87341C4.38491 4.93481 4.1254 6.11377 4.16539 7.30177C4.20538 8.48976 4.54359 9.6486 5.14888 10.6716C5.75416 11.6946 6.60708 12.5489 7.6291 13.1559C7.82584 13.272 8.05017 13.3332 8.27865 13.333Z"/><path d="M28.745 1.22823C28.6115 1.12284 28.4579 1.04577 28.2936 1.00171C28.1294 0.957654 27.9578 0.947535 27.7895 0.971974C27.6212 0.996412 27.4596 1.0549 27.3146 1.14385C27.1697 1.23281 27.0444 1.35038 26.9463 1.48937C26.8483 1.62837 26.7796 1.78589 26.7445 1.95231C26.7094 2.11873 26.7085 2.29056 26.742 2.45731C26.7755 2.62407 26.8426 2.78225 26.9393 2.92221C27.036 3.06216 27.1601 3.18095 27.3042 3.27132C27.9133 3.69564 28.4107 4.26087 28.7543 4.91888C29.0978 5.57689 29.2772 6.30818 29.2772 7.05046C29.2772 7.79275 29.0978 8.52404 28.7543 9.18205C28.4107 9.84006 27.9133 10.4053 27.3042 10.8296C27.0851 10.9821 26.9204 11.2007 26.8344 11.4534C26.7483 11.7061 26.7452 11.9798 26.8257 12.2343C26.9062 12.4889 27.0659 12.7111 27.2816 12.8684C27.4973 13.0258 27.7576 13.11 28.0246 13.1089C28.282 13.1092 28.5333 13.0309 28.745 12.8845C29.6901 12.233 30.4628 11.3616 30.9966 10.3454C31.5304 9.32911 31.8092 8.19838 31.8092 7.05046C31.8092 5.90255 31.5304 4.77182 30.9966 3.75556C30.4628 2.73929 29.6901 1.86792 28.745 1.21642V1.22823Z"/><path d="M24.3754 18.9548C22.911 18.3525 21.2695 18.3525 17.9863 18.3525C14.7032 18.3525 13.0616 18.3525 11.5972 18.9548C9.68075 19.7849 8.16092 21.3258 7.35749 23.2536C6.75519 24.718 6.75519 26.3714 6.75519 29.6427V31.3197C6.75188 31.6426 6.87466 31.9541 7.09741 32.1878C7.32016 32.4216 7.62531 32.5593 7.94798 32.5716H28.0247C28.1895 32.5731 28.353 32.5418 28.5056 32.4795C28.6582 32.4171 28.7968 32.325 28.9134 32.2084C29.0299 32.0919 29.1221 31.9532 29.1844 31.8006C29.2468 31.648 29.2781 31.4846 29.2765 31.3197V29.6427C29.2765 26.3714 29.2765 24.718 28.6742 23.2536C28.2765 22.289 27.6919 21.4127 26.9542 20.6749C26.2164 19.9371 25.34 19.3526 24.3754 18.9548Z"/><path d="M35.1105 22.6982C34.351 21.1947 33.1301 19.9738 31.6266 19.2143C31.4793 19.1367 31.3181 19.089 31.1523 19.0737C30.9866 19.0584 30.8194 19.076 30.6604 19.1253C30.5013 19.1747 30.3536 19.2549 30.2256 19.3613C30.0976 19.4678 29.9918 19.5984 29.9142 19.7457C29.8367 19.893 29.7889 20.0542 29.7736 20.22C29.7584 20.3858 29.7759 20.553 29.8253 20.712C29.8746 20.871 29.9548 21.0187 30.0613 21.1468C30.1677 21.2748 30.2983 21.3806 30.4457 21.4581C31.4644 21.9739 32.2919 22.8013 32.8076 23.8201C33.3981 25.0011 33.3981 26.7607 33.3981 30.3037V31.3075C33.4284 31.6201 33.574 31.9101 33.8066 32.1212C34.0391 32.3322 34.3418 32.4491 34.6559 32.4491C34.9699 32.4491 35.2726 32.3322 35.5052 32.1212C35.7377 31.9101 35.8833 31.6201 35.9136 31.3075V30.3155C35.9727 26.371 35.9727 24.387 35.1105 22.6982Z"/><path d="M4.3342 19.2147C2.83661 19.9783 1.62065 21.1984 0.862117 22.6986C0 24.3874 0 26.3714 0 30.3159V31.3197C0.0303216 31.6323 0.175928 31.9223 0.408445 32.1334C0.640961 32.3444 0.943729 32.4614 1.25775 32.4614C1.57176 32.4614 1.87453 32.3444 2.10705 32.1334C2.33956 31.9223 2.48517 31.6323 2.51549 31.3197V30.3159C2.51549 26.7729 2.51549 24.9897 3.10598 23.8323C3.62171 22.8136 4.4492 21.9861 5.46795 21.4703C5.7655 21.3137 5.98866 21.0453 6.08832 20.7242C6.18798 20.4031 6.15599 20.0555 5.99939 19.7579C5.84278 19.4604 5.57438 19.2372 5.25324 19.1375C4.9321 19.0379 4.58452 19.0699 4.28696 19.2265L4.3342 19.2147Z"/></symbol>
+  </svg>
+
+  <!-- Ambient background -->
+  <div class="sky" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ═════════ NAV ═════════ -->
+  <nav class="nav" id="nav">
+    <a class="logo" href="#home"><img src="assets/images/logo-name.png" alt="Gespräch"></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#communication"><span class="roll"><span>通讯</span></span></a></li>
+      <li><a href="#application"><span class="roll"><span>Gespräch</span></span></a></li>
+      <li><a href="#cooperation"><span class="roll"><span>合作</span></span></a></li>
+    </ul>
+    <a class="btn-glow" href="#download">免费下载 <span class="arrow" aria-hidden="true"><i>↗</i><i>↗</i></span></a>
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="菜单" aria-controls="mnav" aria-expanded="false"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="mnav" id="mnav">
+    <a href="#communication">通讯</a>
+    <a href="#application">Gespräch</a>
+    <a href="#cooperation">合作</a>
+    <a href="#download">下载</a>
+  </div>
+
+  <main id="home">
+
+    <!-- ═════════ HERO ═════════ -->
+    <header class="hero">
+      <div class="wrap">
+        <h1 class="fade-up"><span class="grad-text">Gespräch</span><span class="zh">专属你的好伙伴</span></h1>
+        <p class="lead fade-up delay-1">让你的生活不再无聊。<br>免费传讯、免费语音，随时随地与重要的人保持连线。</p>
+        <div class="stores fade-up delay-2" id="download">
+          <a href="#"><img src="assets/images/app-store.png" alt="Download on the App Store"></a>
+          <a href="#"><img src="assets/images/play-store.png" alt="Get it on Play Store"></a>
+          <a href="#"><img src="assets/images/apk.png" alt="官方 APK 下载"></a>
+        </div>
+      </div>
+
+      <div class="stage fade-up delay-3" id="stage">
+        <div class="beam"></div>
+        <div class="ring"></div><div class="ring r2"></div>
+
+        <div class="rig" id="rig">
+          <div class="device">
+            <div class="scr">
+              <div class="island"></div>
+              <div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+              <div class="ch"><div class="av bg-aurora">Y</div><div><b>Yuki</b><small id="status">在线</small></div></div>
+              <div class="feed feed--live" id="feed"></div>
+              <div class="bar"><span>输入讯息…</span><span class="send">↑</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="chip c1">
+          <span class="ic"><svg><use href="#i-voice"/></svg></span>
+          <div><b>语音讯息</b><div class="eq"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+        </div>
+        <div class="chip c2">
+          <span class="ic"><svg><use href="#i-video"/></svg></span>
+          <div><b>影片录制</b><small><span class="rec"></span>REC 00:24</small></div>
+        </div>
+        <div class="chip c3">
+          <span class="ic"><svg><use href="#i-groupchat"/></svg></span>
+          <div><b>观星小队</b><div class="stack"><span class="bg-blue">Y</span><span class="bg-violet">M</span><span class="bg-green">阿</span><span class="bg-pink">林</span></div></div>
+        </div>
+        <div class="chip c4">
+          <span class="ic"><svg><use href="#i-emoji"/></svg></span>
+          <div><b>贴图</b><small class="emoji">🥳🫶😆</small></div>
+        </div>
+
+        <div class="stage-fade"></div>
+      </div>
+    </header>
+
+    <!-- ═════════ FEATURES ═════════ -->
+    <section id="communication">
+      <div class="wrap">
+        <div class="head reveal">
+          <span class="eyebrow mono">通讯软件 · Features</span>
+          <h2>沟通的每一种方式，<br><span class="grad-text">都在这里</span></h2>
+          <p>从一句问候到一整个社群，Gespräch 把聊天、影像、语音与群组，收进同一个轻盈的空间。</p>
+        </div>
+
+        <div class="bento">
+          <article class="card span2 row reveal">
+            <div class="txt">
+              <span class="ico"><svg><use href="#i-chat"/></svg></span>
+              <h3>聊天 <small>Chat</small></h3>
+              <p>随时随地开心地跟家人朋友传送讯息</p>
+            </div>
+            <div class="viz">
+              <div class="viz-chat">
+                <div class="m you">周末一起吃饭吗？🍜</div>
+                <div class="m me">好呀！我订位</div>
+                <div class="m you">那就说定了 ✨</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <span class="ico"><svg><use href="#i-video"/></svg></span>
+            <h3>影片录制 <small>Video</small></h3>
+            <p>利用照片和影片与好友立即分享共同兴趣</p>
+            <div class="viz">
+              <div class="viz-rec">
+                <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+                <span class="t"><span class="rec"></span>00:24</span>
+                <span class="shutter"></span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <span class="ico"><svg><use href="#i-voice"/></svg></span>
+            <h3>语音 <small>Voice</small></h3>
+            <p>迅速传送语音讯息，让聊天不再枯燥乏味</p>
+            <div class="viz"><div class="viz-wave" id="bigwave"></div></div>
+          </article>
+
+          <article class="card reveal">
+            <span class="ico"><svg><use href="#i-emoji"/></svg></span>
+            <h3>贴图 <small>Stickers</small></h3>
+            <p>使用贴图，让你随心所欲表达自我</p>
+            <div class="viz">
+              <div class="viz-emoji"><span>🥳</span><span>😆</span><span>🫶</span><span>🐶</span><span>🌈</span><span>😎</span><span>🍰</span><span>👋</span></div>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <span class="ico"><svg><use href="#i-groupchat"/></svg></span>
+            <h3>群组联系 <small>Groups</small></h3>
+            <p>找到伙伴，让你时时保持联系</p>
+            <div class="viz">
+              <div class="viz-group">
+                <div class="stack"><span class="bg-blue">Y</span><span class="bg-violet">M</span><span class="bg-green">阿</span><span class="bg-pink">林</span><span class="more">+8</span></div>
+                <span class="online">在线</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card span2 row reveal">
+            <div class="txt">
+              <span class="ico"><svg><use href="#i-group"/></svg></span>
+              <h3>群组管理 <small>Communities</small></h3>
+              <p>透过分组和权限管理任何社群</p>
+            </div>
+            <div class="viz">
+              <div class="viz-roles">
+                <div class="role"><span class="who"><span class="av bg-blue">Y</span>Yuki <span class="tag a">管理员</span></span><button class="tgl is-on" type="button" aria-pressed="true" aria-label="Yuki 权限"></button></div>
+                <div class="role"><span class="who"><span class="av bg-violet">M</span>Mia <span class="tag b">版主</span></span><button class="tgl is-on" type="button" aria-pressed="true" aria-label="Mia 权限"></button></div>
+                <div class="role"><span class="who"><span class="av bg-green">阿</span>阿哲 <span class="tag c">成员</span></span><button class="tgl" type="button" aria-pressed="false" aria-label="阿哲 权限"></button></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card dl reveal">
+            <span class="mono">Download</span>
+            <h3>现在就开始<br>你的第一段对话</h3>
+            <div class="stores">
+              <a href="#"><img src="assets/images/app-store.png" alt="App Store"></a>
+              <a href="#"><img src="assets/images/play-store.png" alt="Play Store"></a>
+              <a href="#"><img src="assets/images/apk.png" alt="APK"></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════ STATEMENT ═════════ -->
+    <section class="statement">
+      <div class="wrap">
+        <!-- "|" splits lines; the 2nd segment is highlighted -->
+        <h2 id="stmt" data-text="串接你我|轻量有质感|的生活" aria-label="串接你我，轻量有质感的生活"></h2>
+        <p class="reveal">一款全新形态的通讯软件，让您随时随地享受免费传讯、免费语音等沟通乐趣。</p>
+      </div>
+    </section>
+
+    <!-- ═════════ STORY (sticky phone) ═════════ -->
+    <section id="application" class="story">
+      <div class="wrap">
+        <div class="head reveal">
+          <span class="eyebrow mono">Gespräch · App</span>
+          <h2>为真实的关系而设计</h2>
+        </div>
+
+        <div class="story-grid">
+          <div class="steps">
+            <div class="step" data-step="0">
+              <span class="idx">01 / 02</span>
+              <h3>聊天</h3>
+              <h4><span class="grad-text">随时随地</span> 精彩生活</h4>
+              <p>与周围朋友聊天互动，分享大小事。</p>
+              <ul><li>文字</li><li>照片</li><li>语音</li><li>贴图</li></ul>
+              <div class="mobile-shot" data-pane="0"></div>
+            </div>
+            <div class="step" data-step="1">
+              <span class="idx">02 / 02</span>
+              <h3>群组</h3>
+              <h4><span class="grad-text">拉群聊天</span> 共享乐趣</h4>
+              <p>分享影像与影片、与趣味相投的朋友们共享生活大小事。</p>
+              <ul><li>群组联系</li><li>分组权限</li><li>共享相簿</li></ul>
+              <div class="mobile-shot" data-pane="1"></div>
+            </div>
+          </div>
+
+          <div class="sticky">
+            <div class="halo"></div>
+            <div class="device" id="storyDevice">
+              <div class="scr">
+                <div class="island"></div>
+
+                <!-- pane 0 · 聊天 -->
+                <div class="pane is-visible" data-pane="0">
+                  <div class="sb"><span>9:41</span><span>▮</span></div>
+                  <div class="ch"><div class="av bg-dusk">M</div><div><b>Mia</b><small>在线</small></div></div>
+                  <div class="feed">
+                    <div class="m you">今天的晚霞好美 🌇</div>
+                    <div class="m you media"><div class="photos"><i></i><i></i><i></i><i></i></div></div>
+                    <div class="m me">哇！下次带我一起去</div>
+                    <div class="m me voice"><svg><use href="#i-voice"/></svg><span class="wv"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="dur">0:06</span></div>
+                    <div class="m sticker">🥹</div>
+                  </div>
+                  <div class="bar"><span>输入讯息…</span><span class="send">↑</span></div>
+                </div>
+
+                <!-- pane 1 · 群组 -->
+                <div class="pane" data-pane="1">
+                  <div class="sb"><span>9:41</span><span>▮</span></div>
+                  <div class="ch"><div class="av bg-lagoon">观</div><div><b>观星小队</b><small class="muted">12 位成员 · 4 在线</small></div></div>
+                  <div class="album"><i></i><i></i><i></i><i></i></div>
+                  <div class="feed">
+                    <div class="m you"><span class="sender sender--mint">阿哲</span>周六晚上山顶集合？</div>
+                    <div class="m you"><span class="sender sender--rose">小林</span>我带望远镜 🔭</div>
+                    <div class="m me">我负责热可可 ☕</div>
+                    <div class="m sys">Mia 上传了 4 张照片到相簿</div>
+                    <div class="m you"><span class="sender sender--lilac">Mia</span>上次拍的银河 ✨</div>
+                  </div>
+                  <div class="bar"><span>在群组中发言…</span><span class="send">↑</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════ COOPERATION ═════════ -->
+    <section id="cooperation">
+      <div class="wrap">
+        <div class="coop-box reveal">
+          <span class="eyebrow mono">合作伙伴 · Partnership</span>
+          <h2>一同携手，<span class="grad-text">开创崭新商业模式</span></h2>
+          <div class="qs">
+            <span>您还在寻找合作对象吗？</span>
+            <span>您需要招揽更多品牌会员与用户吗？</span>
+          </div>
+          <p>赶快联络我们，一起把好的对话带给更多人。</p>
+          <a class="btn-glow" href="#cooperation">联络我们 <span class="arrow arrow--x" aria-hidden="true"><i>→</i><i>→</i></span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ═════════ FOOTER ═════════ -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="f-top">
+        <div class="brand">
+          <img src="assets/images/logo-name.png" alt="Gespräch">
+          <p>串接你我，轻量有质感的生活。</p>
+          <div class="f-stores">
+            <a href="#"><img src="assets/images/app-store.png" alt="App Store"></a>
+            <a href="#"><img src="assets/images/play-store.png" alt="Play Store"></a>
+            <a href="#"><img src="assets/images/apk.png" alt="APK"></a>
+          </div>
+        </div>
+        <div class="f-links">
+          <a href="#">使用指南</a>
+          <a href="#">服务条款</a>
+          <a href="#">隐私权政策</a>
+        </div>
+      </div>
+      <div class="f-word" aria-hidden="true">Gespräch</div>
+      <div class="f-bottom mono"><span>© Gespräch</span><a href="#home">回到顶部 ↑</a></div>
+    </div>
+  </footer>
+
+</body>
+</html>

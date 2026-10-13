@@ -1,0 +1,8 @@
+/* Big slogan; characters light up with scroll (spans built by js/main.js) */
+
+.statement{padding:clamp(100px,14vw,200px) 0}
+.statement h2{max-width:12em;margin:0 auto;text-align:center;font-family:var(--zh);font-weight:500;font-size:clamp(38px,7vw,104px);line-height:1.15;letter-spacing:-.03em}
+.statement h2 span{opacity:.14;transition:opacity .25s,color .25s}
+.statement h2 span.is-on{opacity:1}
+.statement h2 span.hl.is-on{color:var(--blue)}
+.statement p{max-width:32em;margin:32px auto 0;text-align:center;color:var(--muted);font-family:var(--zh);font-weight:300;font-size:clamp(15px,1.4vw,19px);text-wrap:balance}

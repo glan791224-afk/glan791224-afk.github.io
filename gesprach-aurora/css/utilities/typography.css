@@ -1,0 +1,6 @@
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+
+.grad-text{
+  background:linear-gradient(100deg,#fff 0%,#cfe8ff 35%,var(--blue) 70%,var(--cyan) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}

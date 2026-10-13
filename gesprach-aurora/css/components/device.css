@@ -1,0 +1,29 @@
+/* Phone mock-up: frame → screen → status bar / chat header / composer */
+
+.device{
+  position:relative;width:300px;height:620px;border-radius:52px;padding:11px;
+  background:linear-gradient(145deg,#3b4352,#151a24 30%,#0b0e15 70%,#2a313e);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.08) inset,
+    0 2px 1px rgba(255,255,255,.15) inset,
+    0 60px 120px -30px rgba(30,126,242,.55),
+    0 40px 80px -40px rgba(0,0,0,.9);
+}
+/* glass reflection */
+.device::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(120deg,rgba(255,255,255,.18),transparent 30%,transparent 70%,rgba(255,255,255,.06))}
+
+.scr{position:relative;width:100%;height:100%;border-radius:42px;overflow:hidden;background:linear-gradient(180deg,#0c1322,#070b14);display:flex;flex-direction:column}
+.island{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:96px;height:28px;border-radius:20px;background:#000;z-index:5}
+
+/* status bar */
+.sb{display:flex;justify-content:space-between;align-items:flex-end;height:48px;padding:0 26px 6px;font:600 12px var(--font);color:#fff}
+
+/* chat header */
+.ch{display:flex;align-items:center;gap:10px;padding:10px 16px 12px;border-bottom:1px solid rgba(255,255,255,.06);text-align:left}
+.ch b{display:block;font:500 14px var(--zh);color:#fff}
+.ch small{display:block;font:400 11px var(--zh);color:var(--online)}
+.ch small.muted{color:var(--dim)}
+
+/* composer */
+.bar{margin:6px 10px 16px;height:40px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;padding:0 6px 0 16px;color:#7f8ca3;font:400 12px var(--zh)}
+.bar .send{width:30px;height:30px;border-radius:50%;background:var(--blue-2);display:grid;place-items:center;color:#fff;font-size:13px}

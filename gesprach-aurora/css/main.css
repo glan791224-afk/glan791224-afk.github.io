@@ -1,0 +1,52 @@
+/* =========================================================
+   Gespräch — Aurora
+   CSS entry point. Import order = cascade order, do not shuffle.
+
+   base/        design tokens, reset, element defaults, keyframes
+   layout/      page-level chrome: container, ambient background, nav, footer
+   components/  reusable UI pieces, context-free
+   sections/    one file per page section; composes components
+   utilities/   single-purpose helpers + state, loaded last so they win
+
+   Breakpoints (plain CSS can't put variables in @media):
+     ≤1000px  tablet
+     ≤760px   mobile
+   Each file keeps its own @media rules next to the rules they override.
+
+   State classes are always prefixed with .is-*  (toggled by js/main.js)
+   ========================================================= */
+
+/* base */
+@import url("base/tokens.css");
+@import url("base/reset.css");
+@import url("base/base.css");
+@import url("base/keyframes.css");
+
+/* layout */
+@import url("layout/container.css");
+@import url("layout/background.css");
+@import url("layout/nav.css");
+@import url("layout/footer.css");
+
+/* components */
+@import url("components/buttons.css");
+@import url("components/section-head.css");
+@import url("components/device.css");
+@import url("components/avatar.css");
+@import url("components/message.css");
+@import url("components/chip.css");
+@import url("components/card.css");
+@import url("components/controls.css");
+
+/* sections */
+@import url("sections/hero.css");
+@import url("sections/features.css");
+@import url("sections/statement.css");
+@import url("sections/story.css");
+@import url("sections/cooperation.css");
+
+/* utilities */
+@import url("utilities/typography.css");
+@import url("utilities/colors.css");
+@import url("utilities/reveal.css");
+@import url("utilities/motion.css");

@@ -1,0 +1,27 @@
+.footer{position:relative;padding:80px 0 40px;border-top:1px solid var(--line);overflow:hidden}
+
+.f-top{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap}
+.f-top .brand img{height:30px;width:auto}
+.f-top .brand p{margin-top:12px;color:var(--muted);font:300 14px var(--zh)}
+
+.f-links{display:flex;gap:28px;flex-wrap:wrap}
+.f-links a{color:var(--muted);font:400 14px var(--zh);transition:color .2s}
+.f-links a:hover{color:var(--text)}
+
+.f-stores{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.f-stores img{height:40px;width:auto}
+
+/* outlined wordmark */
+.f-word{
+  margin-top:60px;text-align:center;user-select:none;
+  font-weight:700;letter-spacing:-.06em;line-height:.8;font-size:clamp(64px,17vw,250px);
+  color:transparent;-webkit-text-stroke:1px rgba(143,213,255,.22);
+  background:linear-gradient(180deg,rgba(143,213,255,.18),transparent 85%);
+  -webkit-background-clip:text;background-clip:text;
+}
+
+.f-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:28px;padding-top:20px;border-top:1px solid var(--line);color:var(--dim)}
+
+@media (max-width:760px){
+  .f-word{margin-top:40px}
+}

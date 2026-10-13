@@ -1,0 +1,21 @@
+/* Partnership panel with rotating gradient border */
+
+.coop-box{
+  position:relative;overflow:hidden;isolation:isolate;text-align:center;
+  padding:clamp(40px,7vw,88px);border-radius:32px;
+  background:radial-gradient(80% 120% at 50% 0%,rgba(30,126,242,.35),rgba(8,12,22,.6) 60%),rgba(8,12,22,.6);
+}
+.coop-box::before{
+  content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;padding:1px;
+  background:conic-gradient(from var(--ang,0deg),transparent 0 70%,var(--cyan) 80%,var(--blue-2) 88%,transparent 95%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;
+  animation:spin 6s linear infinite;
+}
+.coop-box::after{content:"";position:absolute;inset:0;z-index:-2;border-radius:inherit;box-shadow:inset 0 0 0 1px var(--line)}
+
+.coop-box h2{margin-top:18px;font-family:var(--zh);font-weight:500;font-size:clamp(36px,5vw,64px);letter-spacing:-.02em;line-height:1.15}
+.coop-box p{margin-top:22px;color:var(--muted);font-family:var(--zh);font-weight:300;font-size:17px}
+.coop-box .btn-glow{margin-top:34px;padding:16px 28px;font-size:16px}
+
+.qs{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:28px}
+.qs span{padding:10px 18px;border-radius:20px;background:rgba(255,255,255,.05);border:1px solid var(--line-2);font:400 15px var(--zh);color:#dbe9ff}

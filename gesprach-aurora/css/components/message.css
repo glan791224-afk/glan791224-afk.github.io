@@ -1,0 +1,55 @@
+/* Chat feed + message bubbles (.m) and their variants */
+
+.feed{flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:8px;padding:14px 12px;overflow:hidden;text-align:left;font:400 13px/1.45 var(--zh)}
+
+/* live feed: messages pop in, then leave together */
+.feed--live{justify-content:flex-start;padding-top:16px}
+.feed--live .m{animation:pop .45s var(--ease-spring) both}
+.feed--live.is-leaving .m{transition:opacity .5s,transform .5s;opacity:0;transform:translateY(-14px)}
+
+/* bubble */
+.m{max-width:78%;padding:9px 13px;border-radius:18px;align-self:flex-start;background:rgba(255,255,255,.08);color:#e8f0ff;border:1px solid rgba(255,255,255,.06);transform-origin:left bottom}
+.m.you{border-bottom-left-radius:6px}
+.m.me{align-self:flex-end;background:linear-gradient(180deg,#4aaeff,#1e7ef2);border-color:transparent;color:#fff;transform-origin:right bottom;border-bottom-right-radius:6px}
+.m.sticker{background:none;border:0;font-size:44px;line-height:1;padding:2px}
+.m.sys{align-self:center;background:rgba(63,162,253,.12);color:var(--cyan);font-size:11px;border-radius:999px;padding:5px 12px;border:1px solid rgba(63,162,253,.25)}
+.m.media{padding:4px}
+
+/* voice message */
+.m.voice{display:flex;align-items:center;gap:8px}
+.m.voice svg{width:12px;height:14px;flex:none;fill:currentColor}
+.m .dur{font-size:11px}
+.wv{display:flex;align-items:center;gap:2px;height:18px}
+.wv i{width:2.5px;border-radius:2px;background:currentColor;opacity:.9}
+.wv i:nth-child(1){height:6px}  .wv i:nth-child(2){height:12px} .wv i:nth-child(3){height:16px}
+.wv i:nth-child(4){height:9px}  .wv i:nth-child(5){height:14px} .wv i:nth-child(6){height:7px}
+.wv i:nth-child(7){height:11px} .wv i:nth-child(8){height:15px} .wv i:nth-child(9){height:8px}
+.wv i:nth-child(10){height:12px} .wv i:nth-child(11){height:5px}
+
+/* typing indicator */
+.m.typing{display:flex;gap:4px;padding:12px 14px}
+.m.typing i{width:6px;height:6px;border-radius:50%;background:#9fb3d1;animation:blink 1.2s infinite}
+.m.typing i:nth-child(2){animation-delay:.15s}
+.m.typing i:nth-child(3){animation-delay:.3s}
+
+/* group sender name */
+.sender{display:block;font-size:10px;font-weight:500;margin-bottom:2px}
+.sender--mint{color:var(--tone-mint)}
+.sender--rose{color:var(--tone-rose)}
+.sender--lilac{color:var(--tone-lilac)}
+
+/* 2×2 photo grid inside a bubble */
+.photos{display:grid;grid-template-columns:1fr 1fr;gap:4px;width:180px;border-radius:14px;overflow:hidden}
+.photos i{aspect-ratio:1;display:block}
+.photos i:nth-child(1){background:linear-gradient(160deg,#ffb37a,#e86a8a)}
+.photos i:nth-child(2){background:linear-gradient(160deg,#7a6bff,#2b3a7a)}
+.photos i:nth-child(3){background:linear-gradient(160deg,#ff8a7a,#7a4bff)}
+.photos i:nth-child(4){background:linear-gradient(160deg,#3fa2fd,#1b2d4d)}
+
+/* shared album strip under a group header */
+.album{display:flex;gap:6px;padding:8px 12px 2px;overflow:hidden}
+.album i{flex:none;width:64px;height:84px;border-radius:12px;display:block}
+.album i:nth-child(1){background:linear-gradient(170deg,#1b2d4d,#3a5bff)}
+.album i:nth-child(2){background:linear-gradient(170deg,#0e1830,#7a6bff)}
+.album i:nth-child(3){background:linear-gradient(170deg,#22395f,#8fd5ff)}
+.album i:nth-child(4){background:linear-gradient(170deg,#2b1f4d,#e86a8a)}

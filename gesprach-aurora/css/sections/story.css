@@ -1,0 +1,37 @@
+/* Scroll story: text steps on the left, sticky phone on the right.
+   On mobile the sticky phone is hidden and each step shows its own copy (.mobile-shot). */
+
+.story{padding-top:40px}
+.story-grid{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:40px}
+
+/* ── steps ── */
+.step{min-height:92vh;display:flex;flex-direction:column;justify-content:center;padding:40px 0;opacity:.25;transition:opacity .6s}
+.step.is-active{opacity:1}
+.step .idx{display:flex;align-items:center;gap:12px;font:500 13px var(--mono);color:var(--cyan)}
+.step .idx::after{content:"";width:60px;height:1px;background:linear-gradient(90deg,var(--cyan),transparent)}
+.step h3{margin-top:18px;font-family:var(--zh);font-weight:700;font-size:clamp(56px,7vw,96px);line-height:1;letter-spacing:-.03em}
+.step h4{margin-top:18px;font-family:var(--zh);font-weight:500;font-size:clamp(22px,2.4vw,32px)}
+.step h4 .grad-text{font-weight:500}
+.step p{margin-top:12px;max-width:26em;color:var(--muted);font-family:var(--zh);font-weight:300;font-size:17px}
+.step ul{list-style:none;margin-top:28px;display:flex;flex-wrap:wrap;gap:8px}
+.step li{padding:8px 14px;border-radius:999px;border:1px solid var(--line-2);background:rgba(255,255,255,.03);font:400 13px var(--zh);color:var(--muted)}
+
+/* ── sticky phone ── */
+.sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center}
+.sticky .halo{position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(30,126,242,.45),transparent 65%);filter:blur(30px)}
+.sticky .device{width:290px;height:600px}
+
+/* screens stacked inside the phone, cross-faded */
+.pane{position:absolute;inset:0;display:flex;flex-direction:column}
+.sticky .pane{opacity:0;transform:scale(.97);transition:opacity .6s,transform .6s}
+.sticky .pane.is-visible{opacity:1;transform:none}
+
+.mobile-shot{display:none}
+
+@media (max-width:760px){
+  .story-grid{grid-template-columns:1fr}
+  .sticky{display:none}
+  .step{min-height:0;opacity:1;padding:48px 0}
+  .mobile-shot{display:flex;justify-content:center;margin-top:36px}
+  .mobile-shot .device{width:260px;height:540px}
+}

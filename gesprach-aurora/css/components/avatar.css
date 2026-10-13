@@ -1,0 +1,8 @@
+/* Single avatar — colour comes from a .bg-* utility */
+.av{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;flex:none;font:600 13px var(--zh);color:#fff;box-shadow:0 0 0 2px rgba(255,255,255,.08)}
+
+/* Overlapping avatar stack */
+.stack{display:flex}
+.stack span{width:26px;height:26px;border-radius:50%;margin-left:-8px;border:2px solid #0e1628;display:grid;place-items:center;font:600 10px var(--zh);color:#fff}
+.stack span:first-child{margin-left:0}
+.stack .more{background:#1a2440;color:#9fb3d1}

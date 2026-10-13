@@ -1,0 +1,9 @@
+/* Avatar / dot fills */
+.bg-blue{background:var(--tone-blue)}
+.bg-violet{background:var(--tone-violet)}
+.bg-green{background:var(--tone-green)}
+.bg-pink{background:var(--tone-pink)}
+
+.bg-aurora{background:linear-gradient(135deg,var(--tone-violet),var(--tone-blue))}
+.bg-dusk{background:linear-gradient(135deg,var(--tone-pink),var(--tone-violet))}
+.bg-lagoon{background:linear-gradient(135deg,var(--tone-green),var(--tone-blue))}

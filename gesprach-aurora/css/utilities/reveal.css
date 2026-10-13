@@ -1,0 +1,10 @@
+/* Load-time entrance (hero) */
+.fade-up{opacity:0;transform:translateY(24px);animation:fade-up 1s var(--ease-out) forwards}
+.delay-1{animation-delay:.08s}
+.delay-2{animation-delay:.16s}
+.delay-3{animation-delay:.24s}
+.delay-4{animation-delay:.35s}
+
+/* Scroll-triggered entrance; .is-in added by IntersectionObserver */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .9s var(--ease-out),transform .9s var(--ease-out)}
+.reveal.is-in{opacity:1;transform:none}

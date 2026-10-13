@@ -1,0 +1,41 @@
+/* Glass card with cursor spotlight (--mx / --my set by js/main.js) */
+
+.card{
+  position:relative;overflow:hidden;isolation:isolate;
+  display:flex;flex-direction:column;min-height:280px;padding:28px;border-radius:var(--r);
+  background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.015));
+  border:1px solid var(--line);box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+  transition:border-color .3s,transform .5s cubic-bezier(.2,.8,.2,1);
+}
+/* soft fill that follows the cursor */
+.card::before{
+  content:"";position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .4s;
+  background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(63,162,253,.16),transparent 45%);
+}
+/* 1px border highlight that follows the cursor */
+.card::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;opacity:0;transition:opacity .4s;
+  background:radial-gradient(300px circle at var(--mx,50%) var(--my,50%),rgba(143,213,255,.7),transparent 50%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;
+}
+.card:hover::before,
+.card:hover::after{opacity:1}
+
+.card .ico{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(160deg,rgba(63,162,253,.3),rgba(30,126,242,.08));box-shadow:inset 0 0 0 1px rgba(143,213,255,.25),0 8px 24px -8px rgba(63,162,253,.6)}
+.card .ico svg{width:26px;height:26px;fill:#d6ecff}
+.card h3{margin-top:18px;font-family:var(--zh);font-weight:500;font-size:22px;letter-spacing:-.01em;display:flex;align-items:baseline;gap:10px}
+.card h3 small{font-family:var(--mono);font-weight:400;font-size:11px;color:var(--dim);letter-spacing:.08em;text-transform:uppercase}
+.card p{margin-top:8px;color:var(--muted);font-family:var(--zh);font-weight:300;font-size:15px;max-width:22em}
+.card .viz{margin-top:auto;padding-top:24px}
+
+/* wide card: text left, visual right */
+.card.span2{grid-column:span 2}
+.card.span2.row{flex-direction:row;gap:32px;align-items:stretch}
+.card.span2.row .txt{flex:1;display:flex;flex-direction:column}
+.card.span2.row .viz{flex:1;margin:0;padding:0;display:flex;align-items:flex-end}
+
+@media (max-width:760px){
+  .card{min-height:0}
+  .card.span2{grid-column:auto}
+  .card.span2.row{flex-direction:column}
+}

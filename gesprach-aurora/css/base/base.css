@@ -1,0 +1,13 @@
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+section{position:relative;padding:clamp(80px,10vw,140px) 0}
+
+/* hidden inline <svg> that holds the icon <symbol>s */
+.sprite{position:absolute;width:0;height:0;overflow:hidden}

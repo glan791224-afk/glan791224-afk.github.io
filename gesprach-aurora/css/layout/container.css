@@ -1,0 +1,2 @@
+/* Content column: var(--container) wide, plus --page-pad on each side */
+.wrap{max-width:calc(var(--container) + var(--page-pad) * 2);margin:0 auto;padding-inline:var(--page-pad)}
